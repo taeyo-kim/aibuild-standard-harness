@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "hooks": {
+    "sessionStart": [
+      {
+        "type": "command",
+        "bash": "node .github/hooks/hook-runner.mjs session-start",
+        "powershell": "node .github/hooks/hook-runner.mjs session-start",
+        "cwd": ".",
+        "timeoutSec": 5
+      }
+    ],
+    "sessionEnd": [
+      {
+        "type": "command",
+        "bash": "node .github/hooks/hook-runner.mjs session-end",
+        "powershell": "node .github/hooks/hook-runner.mjs session-end",
+        "cwd": ".",
+        "timeoutSec": 5
+      },
+      {
+        "type": "command",
+        "bash": "node .github/hooks/hook-runner.mjs scan-secrets",
+        "powershell": "node .github/hooks/hook-runner.mjs scan-secrets",
+        "cwd": ".",
+        "env": {
+          "SCAN_MODE": "warn",
+          "SCAN_SCOPE": "diff"
+        },
+        "timeoutSec": 30
+      }
+    ],
+    "userPromptSubmitted": [
+      {
+        "type": "command",
+        "bash": "node .github/hooks/hook-runner.mjs log-prompt",
+        "powershell": "node .github/hooks/hook-runner.mjs log-prompt",
+        "cwd": ".",
+        "env": {
+          "LOG_LEVEL": "INFO"
+        },
+        "timeoutSec": 5
+      }
+    ],
+    "preToolUse": [
+      {
+        "type": "command",
+        "bash": "node .github/hooks/hook-runner.mjs tool-guardian",
+        "powershell": "node .github/hooks/hook-runner.mjs tool-guardian",
+        "cwd": ".",
+        "env": {
+          "GUARD_MODE": "warn"
+        },
+        "timeoutSec": 10
+      }
+    ],
+    "postToolUse": [
+      {
+        "type": "command",
+        "bash": "node .github/hooks/hook-runner.mjs format-lint",
+        "powershell": "node .github/hooks/hook-runner.mjs format-lint",
+        "cwd": ".",
+        "timeoutSec": 30
+      }
+    ]
+  }
+}
