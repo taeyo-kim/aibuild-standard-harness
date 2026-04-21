@@ -4,8 +4,8 @@
     "sessionStart": [
       {
         "type": "command",
-        "bash": "node .github/hooks/scripts/log-session-start.mjs",
-        "powershell": "node .github/hooks/scripts/log-session-start.mjs",
+        "bash": "sh .github/hooks/run-hook.sh session-start",
+        "powershell": "./.github/hooks/run-hook.ps1 session-start",
         "cwd": ".",
         "timeoutSec": 5
       }
@@ -13,15 +13,15 @@
     "sessionEnd": [
       {
         "type": "command",
-        "bash": "node .github/hooks/scripts/log-session-end.mjs",
-        "powershell": "node .github/hooks/scripts/log-session-end.mjs",
+        "bash": "sh .github/hooks/run-hook.sh session-end",
+        "powershell": "./.github/hooks/run-hook.ps1 session-end",
         "cwd": ".",
         "timeoutSec": 5
       },
       {
         "type": "command",
-        "bash": "node .github/hooks/scripts/scan-secrets.mjs",
-        "powershell": "node .github/hooks/scripts/scan-secrets.mjs",
+        "bash": "sh .github/hooks/run-hook.sh scan-secrets",
+        "powershell": "./.github/hooks/run-hook.ps1 scan-secrets",
         "cwd": ".",
         "env": {
           "SCAN_MODE": "warn",
@@ -33,8 +33,8 @@
     "userPromptSubmitted": [
       {
         "type": "command",
-        "bash": "node .github/hooks/scripts/log-prompt.mjs",
-        "powershell": "node .github/hooks/scripts/log-prompt.mjs",
+        "bash": "sh .github/hooks/run-hook.sh log-prompt",
+        "powershell": "./.github/hooks/run-hook.ps1 log-prompt",
         "cwd": ".",
         "env": {
           "LOG_LEVEL": "INFO"
@@ -45,8 +45,8 @@
     "preToolUse": [
       {
         "type": "command",
-        "bash": "node .github/hooks/scripts/tool-guardian.mjs",
-        "powershell": "node .github/hooks/scripts/tool-guardian.mjs",
+        "bash": "sh .github/hooks/run-hook.sh tool-guardian",
+        "powershell": "./.github/hooks/run-hook.ps1 tool-guardian",
         "cwd": ".",
         "env": {
           "GUARD_MODE": "warn"
@@ -57,8 +57,8 @@
     "postToolUse": [
       {
         "type": "command",
-        "bash": "node .github/hooks/scripts/format-lint.mjs",
-        "powershell": "node .github/hooks/scripts/format-lint.mjs",
+        "bash": "sh .github/hooks/run-hook.sh format-lint",
+        "powershell": "./.github/hooks/run-hook.ps1 format-lint",
         "cwd": ".",
         "timeoutSec": 30
       }
